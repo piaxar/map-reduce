@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import sys
 import re
+import os
 
 first_capital = re.compile('^[a-z]')
 extensions = [".jpg", ".gif", ".png", ".JPG", ".GIF", ".PNG", ".txt", ".ico"]
@@ -35,5 +36,5 @@ for line in sys.stdin:
                     # remove boilerplate_articles
                     if page[1] not in boilerplate_articles:
                         filename = os.environ["mapreduce_map_input_file"]
-                        page[1] = filename[16:18]+page[1]
+                        page[1] = filename[-18:-10]+page[1]
                         print('{}\t{}'.format(page[1], page[2]))
